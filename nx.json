@@ -32,6 +32,9 @@
     "happ-e2e": {
       "tags": [],
       "implicitDependencies": ["happ"]
+    },
+    "plugins-plug1": {
+      "tags": []
     }
   }
 }

@@ -129,10 +129,53 @@
           }
         }
       }
+    },
+    "plugins-plug1": {
+      "projectType": "library",
+      "root": "libs/plugins/plug1",
+      "sourceRoot": "libs/plugins/plug1/src",
+      "prefix": "sketl",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/plugins/plug1/tsconfig.lib.json",
+            "project": "libs/plugins/plug1/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/plugins/plug1/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/plugins/plug1/tsconfig.lib.json",
+              "libs/plugins/plug1/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/plugins/plug1/**/*"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/plugins/plug1"
+          ],
+          "options": {
+            "jestConfig": "libs/plugins/plug1/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
-    "defaultCollection": "@nrwl/angular"
+    "defaultCollection": "@nstudio/xplat"
   },
   "generators": {
     "@nrwl/angular:application": {

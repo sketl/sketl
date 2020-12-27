@@ -1,1 +1,10 @@
-HAPP ready!!!!
+<header>
+  <span>Plugins:</span>
+  <a [routerLink]="plug.link" *ngFor="let plug of plugins$ | async">
+    {{ plug.name }}
+  </a>
+</header>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
