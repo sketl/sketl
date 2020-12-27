@@ -1,8 +1,150 @@
 {
   "version": 2,
-
-  "projects": {},
+  "projects": {
+    "happ": {
+      "projectType": "application",
+      "root": "apps/happ",
+      "sourceRoot": "apps/happ/src",
+      "prefix": "sketl",
+      "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/happ",
+            "index": "apps/happ/src/index.html",
+            "main": "apps/happ/src/main.ts",
+            "polyfills": "apps/happ/src/polyfills.ts",
+            "tsConfig": "apps/happ/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/happ/src/favicon.ico",
+              "apps/happ/src/assets"
+            ],
+            "styles": [
+              "apps/happ/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/happ/src/environments/environment.ts",
+                  "with": "apps/happ/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "happ:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "happ:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "happ:build"
+          }
+        },
+        "lint": {
+          "executor": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/happ/tsconfig.app.json",
+              "apps/happ/tsconfig.spec.json",
+              "apps/happ/tsconfig.editor.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/happ/**/*"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/happ"
+          ],
+          "options": {
+            "jestConfig": "apps/happ/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "happ-e2e": {
+      "root": "apps/happ-e2e",
+      "sourceRoot": "apps/happ-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/happ-e2e/cypress.json",
+            "tsConfig": "apps/happ-e2e/tsconfig.e2e.json",
+            "devServerTarget": "happ:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "happ:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/happ-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/happ-e2e/**/*"
+            ]
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/angular"
+  },
+  "generators": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "happ"
 }
