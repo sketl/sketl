@@ -53,6 +53,7 @@
     "@nrwl/cypress": "11.0.18",
     "@nrwl/jest": "11.0.18",
     "@nrwl/nx-cloud": "latest",
+    "@nrwl/nx-plugin": "^11.0.18",
     "@nrwl/tao": "11.0.18",
     "@nrwl/workspace": "11.0.18",
     "@nstudio/xplat": "^11.0.2",
