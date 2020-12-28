@@ -7,6 +7,9 @@
       "sourceRoot": "apps/happ/src",
       "prefix": "sketl",
       "targets": {
+        "up": {
+          "executor": "./libs/nx-plugin-happ:build"
+        },
         "build": {
           "executor": "@angular-devkit/build-angular:browser",
           "options": {
@@ -169,6 +172,77 @@
           "options": {
             "jestConfig": "libs/plugins/plug1/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "nx-plugin-happ": {
+      "root": "libs/nx-plugin-happ",
+      "sourceRoot": "libs/nx-plugin-happ/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/nx-plugin-happ/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/nx-plugin-happ"
+          ],
+          "options": {
+            "jestConfig": "libs/nx-plugin-happ/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/libs/nx-plugin-happ",
+            "tsConfig": "libs/nx-plugin-happ/tsconfig.lib.json",
+            "packageJson": "libs/nx-plugin-happ/package.json",
+            "main": "libs/nx-plugin-happ/src/index.ts",
+            "assets": [
+              "libs/nx-plugin-happ/*.md",
+              {
+                "input": "./libs/nx-plugin-happ/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./libs/nx-plugin-happ",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./libs/nx-plugin-happ",
+                "glob": "executors.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "nx-plugin-happ-e2e": {
+      "projectType": "application",
+      "root": "apps/nx-plugin-happ-e2e",
+      "sourceRoot": "apps/nx-plugin-happ-e2e/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/nx-plugin:e2e",
+          "options": {
+            "target": "nx-plugin-happ:build",
+            "npmPackageName": "@sketl/nx-plugin-happ",
+            "pluginOutputPath": "dist/libs/nx-plugin-happ",
+            "jestConfig": "apps/nx-plugin-happ-e2e/jest.config.js"
           }
         }
       }

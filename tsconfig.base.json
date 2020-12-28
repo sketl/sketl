@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@sketl/plugins/plug1": ["libs/plugins/plug1/src/index.ts"]
+      "@sketl/plugins/plug1": ["libs/plugins/plug1/src/index.ts"],
+      "@sketl/nx-plugin-happ": ["libs/nx-plugin-happ/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

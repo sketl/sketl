@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "nx-plugin-happ",
+  "version": "0.0.1",
+  "generators": {
+    "nx-plugin-happ": {
+      "factory": "./src/generators/nx-plugin-happ/generator",
+      "schema": "./src/generators/nx-plugin-happ/schema.json",
+      "description": "nx-plugin-happ generator"
+    }
+  }
+}

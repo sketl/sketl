@@ -35,6 +35,13 @@
     },
     "plugins-plug1": {
       "tags": []
+    },
+    "nx-plugin-happ": {
+      "tags": []
+    },
+    "nx-plugin-happ-e2e": {
+      "tags": [],
+      "implicitDependencies": ["nx-plugin-happ"]
     }
   }
 }
