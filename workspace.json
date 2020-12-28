@@ -8,7 +8,8 @@
       "prefix": "sketl",
       "targets": {
         "up": {
-          "executor": "./libs/nx-plugin-happ:build"
+          "executor": "@sketl/nx-plugin-happ:build",
+          "options": {}
         },
         "build": {
           "executor": "@angular-devkit/build-angular:browser",
