@@ -29,10 +29,7 @@ export function appInit(router: Router) {
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([], {
-      initialNavigation: 'enabled',
-      // enableTracing: true,
-    }),
+    RouterModule.forRoot([]),
   ],
   bootstrap: [AppComponent],
   providers: [
